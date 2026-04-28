@@ -25,3 +25,32 @@ int main(void)
 
     return 0;
 }
+#-------------------------------------------
+코드 내용은 똑같습니다. 다만 C23에서는 bool형이 있기 때문에 found를 bool형으로 선언하고 사용해야 합니다:
+#include <stdio.h>
+
+int main(void)
+{
+    int n, total = 0;
+    bool found = false;
+	
+    scanf("%d", &n);
+	
+    for (int i = 1; i * 900 < n; i++) {
+        for (int j = 2; j * 750 < n; j += 2) {
+            for (int k = 1; k * 200 < n; k++) {
+				total = i * 900 + j * 750 + k * 200;				
+                if (total == n && (k < i || k < j)) {
+                    printf("%d %d %d\n", i, j, k);
+                    found = true;
+                }
+            }
+        }
+    }
+	
+    if (!found) {
+        printf("none\n");
+    }
+	
+    return 0;
+}
